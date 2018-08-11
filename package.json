@@ -1,0 +1,32 @@
+{
+  "name": "asian-games-api",
+  "version": "1.0.0",
+  "description": "Unofficial Asian Games API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prakashdivyy/asian-games-api.git"
+  },
+  "keywords": [
+    "API",
+    "Sports"
+  ],
+  "author": "Prakash Divy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prakashdivyy/asian-games-api/issues"
+  },
+  "homepage": "https://github.com/prakashdivyy/asian-games-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "express-async-handler": "^1.1.4",
+    "lodash": "^4.17.10",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
