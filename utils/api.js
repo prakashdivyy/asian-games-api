@@ -2,6 +2,8 @@
 const request = require("request-promise");
 const _ = require("lodash");
 
+const language = ["en", "id"];
+
 const sports = {
     archery: { title: 'Archery', id: 'ar' },
     artistic_gymnastics: { title: 'Artistic Gymnastics', id: 'ga' },
@@ -64,14 +66,14 @@ const sports = {
 };
 
 module.exports = {
-    getAllSchedule: async function (sport) {
+    getAllSchedule: async function (sport, lang) {
         try {
-            if (!sports[sport]) {
+            if (!sports[sport] || language.indexOf(lang) === -1) {
                 throw new Error();
             }
             const options = {
                 method: "GET",
-                uri: `https://en.asiangames2018.id/api/mobileapp/device/smartphone/schedules/disc/${sports[sport].id.toUpperCase()}/current`,
+                uri: `https://${lang}.asiangames2018.id/api/mobileapp/device/smartphone/schedules/disc/${sports[sport].id.toUpperCase()}/current`,
                 json: true
             };
             const result = await request(options);

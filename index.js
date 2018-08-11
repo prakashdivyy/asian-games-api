@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => res.send("Hello World!"));
 
 app.get("/schedules", asyncHandler(async (req, res, next) => {
-    let { sport } = req.query;
-    const schedules = await api.getAllSchedule(sport);
+    let { sport, lang } = req.query;
+    const schedules = await api.getAllSchedule(sport, lang ? lang : "id");
     if (schedules) {
         res.send({
             status: "ok",
