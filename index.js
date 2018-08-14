@@ -12,17 +12,20 @@ app.use(bodyParser.json());
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.get("/schedules", asyncHandler(async (req, res, next) => {
-    let { sport, lang } = req.query;
-    const schedules = await api.getAllSchedule(sport, lang ? lang : "id");
-    if (schedules) {
-        res.send({
-            status: "ok",
-            data: schedules
-        });
-    } else {
-        res.sendStatus(404);
-    }
-}));
+app.get("/schedules", (req, res, next) => {
+    const schedules = api.getAllSchedule(req.query);
+    res.send({
+        status: "ok",
+        data: schedules
+    });
+});
+
+app.get("/countries", (req, res, next) => {
+    const countries = api.getCountry();
+    res.send({
+        status: "ok",
+        data: countries
+    });
+});
 
 app.listen(PORT, () => console.log(`asian-games-api listening on port ${PORT}!`));
