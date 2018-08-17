@@ -28,4 +28,23 @@ app.get("/countries", (req, res, next) => {
     });
 });
 
+app.get("/athlete", (req, res, next) => {
+    const country = req.query.country;
+    const sport = req.query.sport;
+
+    if (country !== undefined) {
+        const athletesByCountry = api.getAllAthleteByCountry(country);
+        res.send({
+            status: "ok",
+            data: athletesByCountry
+        });
+    } else {
+        const athletes = api.getAllAthlete();
+        res.send({
+            status: "ok",
+            data: athletes
+        });
+    }
+});
+
 app.listen(PORT, () => console.log(`asian-games-api listening on port ${PORT}!`));
