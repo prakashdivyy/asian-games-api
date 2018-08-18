@@ -30,9 +30,8 @@ app.get("/countries", (req, res, next) => {
 
 app.get("/athlete", (req, res, next) => {
     const country = req.query.country;
-    const sport = req.query.sport;
 
-    if (country !== undefined) {
+    if (country) {
         const athletesByCountry = api.getAllAthleteByCountry(country);
         res.send({
             status: "ok",
