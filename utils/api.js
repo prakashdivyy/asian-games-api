@@ -6,7 +6,7 @@ const scheduleBySport = require('./scheduleBySport.json');
 const athleteList = require('./athleteList.json');
 
 module.exports = {
-    getAllSchedule: function(query) {
+    getAllSchedule: function (query) {
         let listSchedule = [];
         let schedules = {};
         if (query.sport) {
@@ -24,17 +24,17 @@ module.exports = {
         });
         return listSchedule;
     },
-    getCountry: function() {
+    getCountry: function () {
         let country = {};
         for (let c in scheduleByCountry) {
             country[c] = scheduleByCountry[c].name;
         }
         return country;
     },
-    getAllAthlete: function() {
+    getAllAthlete: function () {
         return athleteList;
     },
-    getAllAthleteByCountry: function(country) {
+    getAllAthleteByCountry: function (country) {
         let listCountryAthlete = athleteList[country].countryAthletes;
         return listCountryAthlete;
     }
