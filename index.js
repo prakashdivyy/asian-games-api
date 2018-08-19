@@ -46,4 +46,18 @@ app.get("/athlete", (req, res, next) => {
     }
 });
 
+app.get("/standings", asyncHandler(async (req, res, next) => {
+    const standings = await api.getStandings();
+    if (standings) {
+        res.send({
+            status: "ok",
+            data: standings
+        });
+    } else {
+        res.send({
+            status: "error"
+        });
+    }
+}));
+
 app.listen(PORT, () => console.log(`asian-games-api listening on port ${PORT}!`));

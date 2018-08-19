@@ -37,5 +37,40 @@ module.exports = {
     getAllAthleteByCountry: function (country) {
         let listCountryAthlete = athleteList[country].countryAthletes;
         return listCountryAthlete;
+    },
+    getStandings: async function () {
+        try {
+            const options = {
+                method: "GET",
+                uri: `https://en.asiangames2018.id/api/mobileapp/device/smartphone/medals/medals_overall`,
+                json: true
+            };
+
+            const result = await request(options);
+            const medals = _.filter(result.Sections, function (e) {
+                return e.Type === "content"
+            })[0].Items;
+
+            let table = [];
+            const countries = this.getCountry();
+
+            for (let country of medals) {
+                let medalCount = country.Extensions.MedalCount;
+                table.push({
+                    rank: parseInt(medalCount.GoldRank, 10),
+                    id: country.Title,
+                    name: countries[country.Title],
+                    gold: parseInt(medalCount.Gold, 10),
+                    silver: parseInt(medalCount.Silver, 10),
+                    bronze: parseInt(medalCount.Bronze, 10)
+                });
+            }
+
+            return table;
+        }
+        catch (err) {
+            return null;
+        }
+
     }
 }
