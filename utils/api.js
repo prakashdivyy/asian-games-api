@@ -63,6 +63,7 @@ module.exports = {
             for (let country of medals) {
                 let medalCount = country.Extensions.MedalCount;
                 let flag = countries[country.Title].flag ? countries[country.Title].flag : undefined;
+                
                 const optSports = {
                     method: "GET",
                     uri: `https://en.asiangames2018.id/api//mobileapp/device/smartphone/medals/country/${country.Title}/medals`,
