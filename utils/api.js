@@ -4,6 +4,7 @@ const _ = require("lodash");
 const scheduleByCountry = require('./scheduleByCountry.json');
 const scheduleBySport = require('./scheduleBySport.json');
 const athleteList = require('./athleteList.json');
+const lookup = require('country-data').lookup;
 
 module.exports = {
     getAllSchedule: function (query) {
@@ -27,7 +28,12 @@ module.exports = {
     getCountry: function () {
         let country = {};
         for (let c in scheduleByCountry) {
-            country[c] = scheduleByCountry[c].name;
+            let data = lookup.countries({ ioc: c })[0];
+            let flag = data ? data.emoji : data;
+            country[c] = {
+                name: scheduleByCountry[c].name,
+                flag
+            }
         }
         return country;
     },
@@ -56,10 +62,12 @@ module.exports = {
 
             for (let country of medals) {
                 let medalCount = country.Extensions.MedalCount;
+                let flag = countries[country.Title].flag ? countries[country.Title].flag : undefined;
                 table.push({
                     rank: parseInt(medalCount.GoldRank, 10),
                     id: country.Title,
-                    name: countries[country.Title],
+                    name: countries[country.Title].name,
+                    flag,
                     gold: parseInt(medalCount.Gold, 10),
                     silver: parseInt(medalCount.Silver, 10),
                     bronze: parseInt(medalCount.Bronze, 10)
