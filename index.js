@@ -28,7 +28,7 @@ app.get("/countries", (req, res, next) => {
     });
 });
 
-app.get("/athlete", (req, res, next) => {
+app.get("/athletes", (req, res, next) => {
     const country = req.query.country;
 
     if (country) {
@@ -46,7 +46,7 @@ app.get("/athlete", (req, res, next) => {
     }
 });
 
-app.get("/standings", asyncHandler(async (req, res, next) => {
+app.get("/standings", asyncHandler(async(req, res, next) => {
     const standings = await api.getStandings();
     if (standings) {
         res.send({
