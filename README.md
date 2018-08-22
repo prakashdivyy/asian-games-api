@@ -46,6 +46,14 @@ This is an unofficial API of The 18th Asian Games 2018 Jakarta-Palembang.
 
 ## Usage
 
+How to use :
+
+`git clone https://github.com/prakashdivyy/asian-games-api.git`
+
+`npm install -g`
+
+`node index.js`
+
 ### GET /countries
 
 Return a list of participated countries
@@ -62,7 +70,7 @@ Return a list of  schedules based on Country's code `[country-code]`
 
 Return a list of participated athletes
 
-### GET /athletes/country=[country-code]
+### GET /athletes?country=[country-code]
 
 Return a list of country's athletes
 
